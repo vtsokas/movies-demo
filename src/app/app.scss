@@ -1,0 +1,28 @@
+.app-menubar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 99.2vw;
+  /* scrollbar compensation */
+  z-index: 1000;
+  /* above everything */
+}
+
+.page-content {
+  padding-top: 4rem;
+  /* adjust based on menubar height */
+}
+
+/* Target bottom center container */
+.p-toast-bottom-center {
+  bottom: 2rem !important;
+}
+
+/* Toast box */
+.p-toast .p-toast-message {
+  min-width: 420px;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}

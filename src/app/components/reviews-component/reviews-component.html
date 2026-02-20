@@ -1,0 +1,12 @@
+<h2 class="reviews-header card-header">Reviews</h2>
+<div *ngFor="let review of movie.reviews?.results" class="review-item">
+    <div class="review-header">
+        <span class="review-author">{{ review.author }}</span>
+        <span class="review-date">
+            {{ review.created_at | date:'mediumDate' }}
+        </span>
+    </div>
+    <p class="review-content">
+        "{{ review.content }}"
+    </p>
+</div>

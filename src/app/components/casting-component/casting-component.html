@@ -1,0 +1,8 @@
+<h2 class="cast-header card-header">Casting</h2>
+<div *ngFor="let person of movie.credits?.cast;" class="cast-item">
+    <img [src]="getProfileUrl(person.profile_path)" class="cast-profile" alt="{{ person.name }}" />
+    <div class="cast-info">
+        <div class="cast-name">{{ person.name }}</div>
+        <div class="cast-character">{{ person.character }}</div>
+    </div>
+</div>

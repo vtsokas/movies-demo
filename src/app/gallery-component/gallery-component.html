@@ -1,0 +1,8 @@
+<p-galleria [value]="movie.images?.backdrops" [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
+    <ng-template #item let-item>
+        <img [src]="getImageUrl(item.file_path)" style="width:100%" />
+    </ng-template>
+    <ng-template #thumbnail let-item>
+        <img class="thumbnail-image" [src]="getImageUrl(item.file_path)" />
+    </ng-template>
+</p-galleria>

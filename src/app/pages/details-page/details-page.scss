@@ -1,0 +1,70 @@
+/* =========================================
+   LAYOUT WRAPPER
+========================================= */
+
+.wrapper {
+  width: 99vw;
+  margin-left: 0.1vw;
+}
+
+
+/* =========================================
+   GENERAL IMAGES
+========================================= */
+
+.poster-img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.poster-thumb,
+.gallery-img {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.cast-img {
+  width: 100%;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+
+.thumbnail-image {
+  width: 90px;
+  object-fit: cover;
+}
+
+
+/* =========================================
+   PRIMENG GLOBAL ADJUSTMENTS
+========================================= */
+
+p-card {
+  margin-bottom: 1rem;
+}
+
+:host ::ng-deep .p-divider {
+  margin-top: 2px;
+}
+
+/* =========================================
+   REVIEWS
+========================================= */
+.reviews-card {
+  margin-top: 16px;
+  padding: 1rem 1.5rem;
+}
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.card-header {
+  margin-top: -20px;
+}
+
+
+
+
+

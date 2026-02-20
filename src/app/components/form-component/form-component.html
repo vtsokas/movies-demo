@@ -1,0 +1,35 @@
+<form [formGroup]="movieForm" class="movie-form p-fluid">
+    <div class="grid">
+        <!-- Title -->
+        <div class="col-12">
+            <label>Title</label>
+            <input pInputText formControlName="title" class="fixed-input-width" />
+        </div>
+        <!-- Overview -->
+        <div class="col-12">
+            <label>Overview</label>
+            <textarea pTextarea rows="5" formControlName="overview" class="fixed-input-width"></textarea>
+        </div>
+        <!-- Genres -->
+        <div class="col-12">
+            <label>Genres</label>
+            <p-multiSelect [options]="genres" optionLabel="name" optionValue="id" formControlName="genre_ids"
+                display="chip" class="fixed-input-width"></p-multiSelect>
+        </div>
+        <!-- Release Date -->
+        <div class="col-12">
+            <label>Release Date</label>
+            <p-datepicker formControlName="release_date" dateFormat="yy-mm-dd" showIcon class="fixed-input-width"></p-datepicker>
+        </div>
+        <!-- Vote Average -->
+        <div class="col-12">
+            <label>Vote Average</label>
+            <p-rating formControlName="vote_average" [stars]="10" class="fixed-input-width"></p-rating>
+        </div>
+        <!-- Poster -->
+        <div class="col-12">
+            <label>Poster URL</label>
+            <input pInputText formControlName="poster_path" class="fixed-input-width" />
+        </div>
+    </div>
+</form>

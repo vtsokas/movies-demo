@@ -1,0 +1,27 @@
+<h2 class="similar-header card-header">Similar Movies</h2>
+<div *ngFor="let similar of movie.similar?.results;" class="similar-item">
+    <!-- Poster -->
+    <img [src]="getPosterUrl(similar.poster_path)" class="similar-poster" alt="{{ similar.title }}" />
+    <div class="similar-info">
+        <!-- Title -->
+        <div class="similar-title">
+            {{ similar.title }}
+            <span class="year">
+                ({{ similar.release_date | date:'yyyy' }})
+            </span>
+        </div>
+        <!-- Rating -->
+        <div class="similar-meta">
+            <span class="rating-badge">
+                ⭐ {{ similar.vote_average | number:'1.1-1' }}
+            </span>
+            <span class="votes">
+                {{ similar.vote_count }} votes
+            </span>
+        </div>
+        <!-- Overview -->
+        <p class="similar-overview">
+            {{ similar.overview }}
+        </p>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+/* =========================================
+   MOVIE FORM - Main Container
+========================================= */
+
+.movie-form {
+  max-width: 900px;
+  margin: 1rem auto;
+
+  /* Inner spacing */
+  padding: 2rem 12px;
+
+  background: var(--surface-card);
+  border-radius: 12px;
+
+  /* Soft elevated card look */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================
+   FORM LABELS
+========================================= */
+
+label {
+  display: block;// Ensures proper vertical spacing
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+
+/* =========================================
+   FIXED WIDTH INPUTS
+========================================= */
+
+$input-fixed-width: 236px;
+
+/* Used for consistent alignment in grid layouts */
+.fixed-input-width {
+  width: $input-fixed-width;
+}
+
+
+/* PrimeNG Datepicker width override */
+.p-datepicker {
+  width: $input-fixed-width;
+  max-width: none;  // Prevent PrimeNG from shrinking it
+}

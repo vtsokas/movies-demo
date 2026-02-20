@@ -1,0 +1,29 @@
+<div class="wrapper grid p-m-4" *ngIf="movie$ | async as movie ">
+    <!-- Movie Info -->
+    <div class="col-2">
+        <app-card-component [movie]="movie" [genres]="(genres$ | async) ?? []"
+            [isDetailView]="true"></app-card-component>
+    </div>
+    <!-- Casting -->
+    <div class="col-2">
+        <p-card styleClass="cast-card">
+            <app-casting-component [movie]="movie"></app-casting-component>
+        </p-card>
+    </div>
+    <!-- Gallery & Reviews -->
+    <div class="col-4">
+        <p-card>
+            <app-gallery-component [movie]="movie"></app-gallery-component>
+        </p-card>
+        <p-card styleClass="reviews-card">
+            <app-reviews-component [movie]="movie"></app-reviews-component>
+        </p-card>
+
+    </div>
+    <!-- Similar movies -->
+    <div class="col-4">
+        <p-card styleClass="similar-card">
+            <app-similar-component [movie]="movie"></app-similar-component>
+        </p-card>
+    </div>
+</div>

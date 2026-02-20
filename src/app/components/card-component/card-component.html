@@ -1,0 +1,103 @@
+<!-------------------------- DISPLAY MOVIE DATA ---------------------------------->
+<!-- Show if 1. Data exist 2. Not editing, 3. Is in visible position scrollwise -->
+<p-card *ngIf="movie.id && !editMode && showContent" class="movie-card">
+    <ng-template pTemplate="header">
+        <div class="poster-wrapper">
+            <!-- Poster image -->
+            <img [src]="getImageUrl(movie.poster_path)" (click)="navigateToDetails(movie.id)" [alt]="movie.title"
+                class="poster" />
+            <!-- Rating -->
+            <div class="rating-overlay">
+                <p-rating [(ngModel)]="movie.vote_average" [readonly]="true" [stars]="10"></p-rating>
+            </div>
+        </div>
+    </ng-template>
+    <!-- Title -->
+    <ng-template pTemplate="title">
+        {{ movie.title }}
+    </ng-template>
+    <!-- Subtitle -->
+    <ng-template pTemplate="subtitle">
+        {{ movie.release_date | date }}
+    </ng-template>
+    <!-- Categories & Overview-->
+    <div class="overview">
+        <div class="chips-container card flex items-center gap-1 flex-wrap">
+            <p-chip *ngFor="let genre of getGenreNames().split(', ')" [label]="genre" />
+        </div>
+        <!-- In list mode limit the overview text-->
+        <span *ngIf="!isDetailView">{{ movie.overview | slice:0:250 }}{{ movie.overview.length > 250 ? '...' :
+            ''}}</span>
+        <span *ngIf="isDetailView">{{ movie.overview }}</span>
+    </div>
+    <!-- Action Buttons -->
+    <div *ngIf="!isDetailView" class="card-footer">
+        <div class="card flex align-items-center buttons-container">
+            <!-- Favourite / Unfavourite -->
+            <p-button icon="pi pi-heart" [rounded]="true" severity="help" [outlined]="!movie.isFavorite"
+                (click)="toggleFavorite(movie)">
+            </p-button>
+            <!-- Actions: Update, Delete, Details -->
+            <div class="ml-auto">
+                <p-splitButton label="Actions" [model]="actions" severity="info">
+                </p-splitButton>
+            </div>
+        </div>
+    </div>
+</p-card>
+
+<!---------------------------- SKELETON LOADER ---------------------------------->
+<!-- Show when 1. No movie data AND not editing, or 2. Card outside visibility -->
+<div *ngIf="(!movie.id && !editMode) || !showContent" class="skeleton-wrapper">
+    <p-card styleClass="movie-card">
+        <!-- Poster Skeleton -->
+        <ng-template pTemplate="header">
+            <p-skeleton height="380px" width="100%" styleClass="poster-skeleton" animation="wave"></p-skeleton>
+        </ng-template>
+        <!-- Title -->
+        <ng-template pTemplate="title">
+            <p-skeleton width="70%" height="1.5rem"></p-skeleton>
+        </ng-template>
+        <!-- Subtitle -->
+        <ng-template pTemplate="subtitle">
+            <p-skeleton width="40%" height="1rem"></p-skeleton>
+        </ng-template>
+        <!-- Overview -->
+        <div class="overview">
+            <p-skeleton width="100%" height="0.8rem"></p-skeleton><br>
+            <p-skeleton width="90%" height="0.8rem"></p-skeleton><br>
+            <p-skeleton width="75%" height="0.8rem"></p-skeleton>
+            <div class="skeleton-chips-container card flex items-center gap-2 flex-wrap">
+                <p-chip label="" />
+                <p-chip label="" />
+                <p-chip label="" />
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="card-footer">
+            <p-skeleton shape="circle" size="2rem"></p-skeleton>
+            <p-skeleton shape="circle" size="2rem"></p-skeleton>
+            <p-skeleton shape="circle" size="2rem"></p-skeleton>
+            <p-skeleton shape="circle" size="2rem"></p-skeleton>
+        </div>
+    </p-card>
+</div>
+
+<!------ MOVIE FORM ----->
+<!-- Show in edit mode -->
+<p-card *ngIf="editMode">
+    <h2 class="edit-header">Edit movie</h2>
+    <app-form-component [movie]="movie" [genres]="genres" (cancel)="editMode = false"></app-form-component>
+    <div class="card flex align-items-center form-buttons-container">
+        <!-- Cancel Button -->
+        <div class="col-6 text-left">
+            <button pButton type="button" label="Cancel" icon="pi pi-times" severity="contrast"
+                (click)="editMode = false"></button>
+        </div>
+        <!-- Submit -->
+        <div class="col-6 text-right">
+            <button *ngIf="formComponent && formComponent.movieForm" pButton type="submit" label="Save"
+                icon="pi pi-check" [disabled]="!formComponent.movieForm.valid" (click)="updateMovie()"></button>
+        </div>
+    </div>
+</p-card>

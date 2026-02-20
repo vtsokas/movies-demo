@@ -1,0 +1,131 @@
+/* =========================================
+   MOVIE CARD - Main Container
+========================================= */
+
+.movie-card {
+  height: 100%;
+  max-height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 12px;
+
+  /* Smooth hover animation */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* Hover state */
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+
+/* =========================================
+   POSTER IMAGE
+========================================= */
+
+.poster {
+  width: 85%;
+  margin-top: 6%;
+  margin-left: 6%;
+
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+/* Movie description text */
+.overview {
+  font-size: 0.9rem;
+  color: #666;
+  min-height: 200px;
+}
+
+/* Edit dialog header */
+.edit-header {
+  margin: 0;
+  text-align: center;
+}
+
+
+/* =========================================
+   CARD FOOTER
+========================================= */
+
+.card-footer {
+  margin-top: auto; // Push footer to bottom
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Rating spacing */
+.p-rating {
+  margin-top: 16px;
+  margin-left: 18px;
+}
+
+
+/* =========================================
+   CHIPS
+========================================= */
+
+/* Shared chip styling */
+.chips-container,
+.skeleton-chips-container {
+  margin-bottom: 4px;
+
+  p-chip {
+    max-height: 24px;
+    font-size: small;
+    background-color: #e0e0e0;
+  }
+}
+
+/* Extra spacing for skeleton state */
+.skeleton-chips-container {
+  margin-top: 16px;
+}
+
+
+/* =========================================
+   BUTTONS / FORM LAYOUT
+========================================= */
+
+.buttons-container {
+  width: 100%;
+  margin-top: 4px;
+
+  display: flex;
+}
+
+/* Form grid spacing override */
+.form-buttons-container .col-6 {
+  margin-top: 10px;
+  margin-bottom: -8px;
+}
+
+
+/* =========================================
+   PRIMENG OVERRIDES (Deep Selectors)
+========================================= */
+
+/* Adjust card body spacing */
+:host ::ng-deep .movie-card .p-card-body {
+  margin-top: -12px;
+}
+
+/* Limit title height & enable scroll if needed */
+:host ::ng-deep .movie-card .p-card-title {
+  max-height: 24px;
+  overflow: auto;
+}
