@@ -9,38 +9,48 @@ git clone https://github.com/vtsokas/movies-demo.git
 ```
 
 ## Install dependencies
+
 ```bash
 cd movies-demo
 npm install
 ```
+
+## Configure MovieDB api token
+
+If you are provided with an **environment.local.ts** file, include it in /src/app/environment. Otherwise, create it using the proper MovieDB configuration, as shown in environment.development.ts.
 
 ## Start development server
 
 To start a local development server, run:
 
 ```bash
-ng serve
+ng serve --configuration=local
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Test the application
+
+To execute the tests, run
+
+```bash
+ng test
+```
+Every component has been tested at the level of being created. The pages have also been tested alongside the store, simulating action dispatching and ensuring the data flow. The movie service where the different data layers are being accessed and combined is tested extensively.
 
 # 2. Architecture
 
 ## Fog architecture
 
-## 🌫 Fog Architecture Implementation
-
 This project implements a simplified **Fog Architecture** pattern by introducing an intermediate layer between the client application and the cloud data source (the MovieDB API). In this setup, the MovieDB API represents the **Cloud Layer** and acts as the primary source of truth for movie data, while the **Fog Layer** is implemented using the browser’s Local Storage. The application interacts with both layers, but all cloud data is processed through the fog layer before being presented to the user.
 
 The fog layer serves multiple purposes, such as supporting offline behavior, reducing direct cloud requests, improving performance through caching, and enriching or masking cloud data. In this project specifically, it is used to decorate and extend the cloud dataset with user-specific state.
 
-Movie data is initially fetched from the MovieDB API. Users can then modify, delete, and mark or unmark movies as favourites. These changes are stored locally in the fog layer (Local Storage) rather than being sent back to the cloud. Whenever new data is retrieved from the API, it is merged with the locally stored fog data before being displayed in the UI. In other words, cloud data always passes “through the fog” before reaching the user, ensuring that local modifications enhance the base dataset without altering the original cloud source.
+Movie data is initially fetched from the MovieDB API. User can then modify, delete, and mark or unmark movies as favourites. These changes are stored locally in the fog layer (Local Storage) rather than being sent back to the cloud. Whenever new data is retrieved from the API, it is merged with the locally stored fog data before being displayed in the UI. In other words, cloud data always passes “through the fog” before reaching the user, ensuring that local modifications enhance the base dataset without altering the original cloud source.
 
-![alt text](image.png)
+![alt text](public/readme/image.png)
 
-## NgRx
-
-## 🗂 State Management with NgRx
+## State Management with NgRx
 
 In addition to the Cloud and Fog layers, this project implements **NgRx Store** as a third data layer within the Angular application. NgRx provides a centralized and reactive state management solution that enables components and services to communicate in a predictable and asynchronous manner.
 
@@ -48,7 +58,7 @@ NgRx introduces a unidirectional data flow pattern. Components dispatch **Action
 
 Components access and react to state changes using **Selectors**, which provide a clean and efficient way to retrieve specific slices of the application state. This architecture ensures clear separation of concerns, improved maintainability, and predictable state transitions across the application.
 
-![alt text](image-1.png)
+![alt text](public/readme/image-1.png)
 
 ## Project structure
 
@@ -91,7 +101,7 @@ app/
 
 ### Cloud alongside Fog data
 
-There are three ways to handle data for this demo: 1. Use an actual Cloud API, 2. Use a local DB (or API & DB), 3. Mock data. Also there are two different type of requirements: 1. Handle HTTP failure, 2. Modify data. Also, in order to deal with scrolling behaviour and make a meaningful application, we should rely on actual movie data. Given that an actual Cloud API (Movie DB) does not **allow modifications** and other two solutions do not give **access to actual data**, or actual HTTP, we had to come up with a combination of Cloud and Fog as explained above.
+There are three ways to handle data for this demo: 1. Use an actual Cloud API, 2. Use a local DB (or API & DB), 3. Mock data. Also there are two different type of requirements: 1. Handle HTTP failure, 2. Modify data. Additionally, in order to deal with scrolling behaviour and make a meaningful application, we should rely on actual movie data. Given that an actual Cloud API (Movie DB) does not **allow modifications** and other two solutions do not give **access to actual data**, or actual HTTP, we had to come up with a combination of Cloud and Fog as explained above.
 
 ### NgRx vs Ngrx Signal
 

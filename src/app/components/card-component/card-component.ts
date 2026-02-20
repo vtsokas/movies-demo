@@ -64,7 +64,6 @@ export class CardComponent {
   }
   // Delete current movie
   deleteMovie() {
-    console.log('Deleting movie with ID:', this.movie);
     this.store.dispatch({ type: '[Movies] Delete Movie', movie: this.movie });
   }
   // Favourite or Unfavourite currrent movie

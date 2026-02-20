@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Movie } from '../../models/movie.model';
 import { GalleriaModule } from 'primeng/galleria';
+import { Movie } from '../../models/movie.model';
 
 @Component({
   standalone: true,

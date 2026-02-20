@@ -34,7 +34,6 @@ export class MovieService {
 
     // Delete movie at fog
     deleteMovie(movie: Movie): Observable<Movie> {
-        console.log('Deleting movie with ID:', movie);
         var deletedMovies = localStorage.getItem('deletedMovies');
         var movies: number[] = deletedMovies ? JSON.parse(deletedMovies) : [];
         if (!movies.includes(movie.id)) {

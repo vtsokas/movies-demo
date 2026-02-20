@@ -26,7 +26,7 @@
             <p-chip *ngFor="let genre of getGenreNames().split(', ')" [label]="genre" />
         </div>
         <!-- In list mode limit the overview text-->
-        <span *ngIf="!isDetailView">{{ movie.overview | slice:0:250 }}{{ movie.overview.length > 250 ? '...' :
+        <span *ngIf="!isDetailView && movie.overview">{{ movie.overview | slice:0:250 }}{{ movie.overview.length > 250 ? '...' :
             ''}}</span>
         <span *ngIf="isDetailView">{{ movie.overview }}</span>
     </div>
